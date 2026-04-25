@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Maskable safe zone: content within centre 80% -->
+  <rect width="512" height="512" rx="0" fill="#1A1A1A"/>
+  <!-- Rounded inner area for safe zone visual -->
+  <rect x="51" y="51" width="410" height="410" rx="80" fill="#1C1C1A"/>
+  <!-- Stylized "D" monogram -->
+  <text
+    x="256"
+    y="356"
+    font-family="Georgia, serif"
+    font-size="290"
+    font-weight="400"
+    text-anchor="middle"
+    fill="#FAF9F6"
+    letter-spacing="-4"
+  >D</text>
+  <!-- Accent dot: income green -->
+  <circle cx="365" cy="163" r="32" fill="#1A6B3C"/>
+</svg>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.tsx$\")",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"personal finance dashboard fintech PWA\" --domain product)",
+      "Bash(npm run:*)",
+      "Bash(grep -r \"resetPassword\\\\|sendPasswordReset\\\\|auth\\\\.\" node_modules/@nhost/nhost-js/dist/ --include=*.d.ts)",
+      "mcp__21st-dev-magic__21st_magic_component_inspiration",
+      "Bash(npm install:*)",
+      "Bash(python3 /Users/karandavda/Desktop/Dhanraksha/.claude/skills/ui-ux-pro-max/scripts/search.py \"fintech dashboard calendar\" --domain product)",
+      "Bash(python3 /Users/karandavda/Desktop/Dhanraksha/.claude/skills/ui-ux-pro-max/scripts/search.py \"dark minimal editorial\" --domain style)",
+      "Bash(python3 /Users/karandavda/Desktop/Dhanraksha/.claude/skills/ui-ux-pro-max/scripts/search.py \"modern technical finance\" --domain typography)"
+    ]
+  }
+}

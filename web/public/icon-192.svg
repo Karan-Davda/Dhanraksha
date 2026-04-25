@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="40" fill="#1A1A1A"/>
+  <!-- Stylized "D" monogram in Fraunces style -->
+  <text
+    x="96"
+    y="132"
+    font-family="Georgia, serif"
+    font-size="110"
+    font-weight="400"
+    text-anchor="middle"
+    fill="#FAF9F6"
+    letter-spacing="-2"
+  >D</text>
+  <!-- Income green accent dot -->
+  <circle cx="138" cy="62" r="12" fill="#1A6B3C"/>
+</svg>

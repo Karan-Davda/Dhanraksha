@@ -1,0 +1,41 @@
+-- This file is a GUIDE, not a runnable SQL migration.
+-- Hasura v2 permissions must be set through the Hasura Console UI.
+--
+-- ══════════════════════════════════════════════════════════════════════════
+-- THE PROBLEM
+-- ══════════════════════════════════════════════════════════════════════════
+-- The current permissions show full ✓ (no row filter) for the user role.
+-- This means Hasura returns ALL rows and delegates filtering to PostgreSQL RLS.
+-- PostgreSQL RLS calls current_user_id() to get the user ID.
+-- If current_user_id() returns NULL → no rows match → silent empty result.
+--
+-- THE FIX (do this in Hasura Console for every table listed below)
+-- ══════════════════════════════════════════════════════════════════════════
+-- 1. Open Nhost Console → your project → Hasura Console
+-- 2. Data → public → [table name] → Permissions tab
+-- 3. Click the pencil ✏ on the "user" row for SELECT
+-- 4. Change "Without any checks" → "With custom check"
+-- 5. Set the row filter to:
+--      { "user_id": { "_eq": "X-Hasura-User-Id" } }
+-- 6. Save. Repeat for INSERT (set "Check" to same filter) and DELETE.
+-- 7. Also apply to UPDATE if needed.
+--
+-- By setting this filter, Hasura injects the user_id WHERE clause directly
+-- using its own session variable — it never needs to call current_user_id().
+-- This is the correct and reliable way to do per-user row security in Nhost.
+--
+-- TABLES TO UPDATE:
+--   expense_categories
+--   income_categories
+--   expenses
+--   incomes
+--   savings_goals
+--   savings
+--   budgets
+--   notifications
+--   exchange_rates
+--
+-- Also run 006_fix_current_user_id.sql in the SQL editor as a belt-and-
+-- suspenders fix for the PostgreSQL RLS function.
+--
+SELECT 1;
