@@ -16,6 +16,7 @@ import toast from 'react-hot-toast'
 import { Eye, EyeOff, Lock, Mail, Shield, ShieldCheck } from 'lucide-react'
 
 import { useNhost } from '../nhost/useNhost'
+import { getNhostAuthRedirectTo } from '../utils/authRedirectOrigin'
 
 function getPasswordStrength(pw: string): { level: number; label: string } {
   if (pw.length === 0) return { level: 0, label: '' }
@@ -54,7 +55,12 @@ export function SignupPage() {
     if (!nhost) return
     setSubmitting(true)
     try {
-      const res = await nhost.auth.signUpEmailPassword({ email, password })
+      const redirectTo = getNhostAuthRedirectTo()
+      const res = await nhost.auth.signUpEmailPassword({
+        email,
+        password,
+        ...(redirectTo ? { options: { redirectTo } } : {}),
+      })
       if (!res.body.session) {
         toast.success('Vault created! Please verify your email, then sign in.')
         navigate('/auth/login', { replace: true })

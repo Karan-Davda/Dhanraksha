@@ -21,6 +21,7 @@ import toast from 'react-hot-toast'
 import { Eye, EyeOff, Fingerprint, Lock, Mail, Shield, ShieldCheck } from 'lucide-react'
 
 import { useNhost } from '../nhost/useNhost'
+import { getNhostAuthRedirectTo } from '../utils/authRedirectOrigin'
 
 type LocationState = { from?: string } | null
 
@@ -139,7 +140,11 @@ export function LoginPage() {
     if (!nhost || !forgotEmail) return
     setForgotSending(true)
     try {
-      await nhost.auth.sendPasswordResetEmail({ email: forgotEmail })
+      const redirectTo = getNhostAuthRedirectTo()
+      await nhost.auth.sendPasswordResetEmail({
+        email: forgotEmail,
+        ...(redirectTo ? { options: { redirectTo } } : {}),
+      })
       toast.success('Reset link sent. Check your inbox.')
       setForgotOpen(false)
       setForgotEmail('')
